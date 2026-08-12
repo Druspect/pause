@@ -6,3 +6,4 @@
 - [x] Build searchable, filterable catalog browsing and a source-submission workflow.
 - [ ] Update repository documentation, validate the site, and push the expanded release to GitHub.
 - [x] Independently verify The Unix Heritage Society, Bitsavers, Retrocomputing Archive, and the Internet Archive Software Collection before retaining their verified status.
+- [x] Update direct runtime dependencies flagged by the production audit and re-run verification.
