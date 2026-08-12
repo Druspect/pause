@@ -7,3 +7,10 @@
 - [x] Update repository documentation, validate the site, and push the expanded release to GitHub.
 - [x] Independently verify The Unix Heritage Society, Bitsavers, Retrocomputing Archive, and the Internet Archive Software Collection before retaining their verified status.
 - [x] Update direct runtime dependencies flagged by the production audit and re-run verification.
+- [x] Research and verify additional pre-AI architecture blueprints and classic systems for the public catalog.
+- [x] Add the approved architecture and classic-system records to the catalog with provenance metadata.
+- [x] Build interactive landing-page exploration features that reinforce the Pause concept.
+- [ ] Validate the expanded experience, update GitHub, and publish the release.
+- [x] Make the Pause control perform a real record-sequencing behavior change.
+- [x] Re-run type checks and desktop/mobile visual verification after the interaction correction.
+- [x] Add unit coverage for paused and wrapping record-sequencing behavior.

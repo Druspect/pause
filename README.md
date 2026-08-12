@@ -10,15 +10,16 @@ Pause is deliberately an **index**, not another file warehouse. It points outwar
 
 ## What is live now
 
-The project includes a public, searchable catalog at `/catalog` and an authenticated source-proposal flow at `/contribute`. Public entries are delivered from the database and contain a stable accession, canonical URL, original era where known, steward, description, concrete technical value, and access or rights notes.
+The project includes a public, searchable catalog at `/catalog`, an interactive subject-and-sequence explorer on the landing page, and an authenticated source-proposal flow at `/contribute`. Public entries are delivered from the database and contain a stable accession, canonical URL, original era where known, steward, description, concrete technical value, and access or rights notes.
 
 | Layer | Purpose | Publication rule |
 |---|---|---|
 | **Public catalog** | Browse verified sources by subject, type, and free-text query. | Only `verified` and `archived` records are visible. |
+| **Pause explorer** | Follow a focused source trail through architecture, systems, networks, and data records. | Visitors may lock one record in place or resume sequencing through that thread. |
 | **Source proposals** | Let authenticated contributors propose missing material. | Submissions remain private to the contributor and editors during review. |
 | **Editorial standard** | Keep the catalog explainable and source-first. | Every visible entry needs a canonical source and enough context to make its technical value clear. |
 
-The initial verified shelf covers archival collections, early operating-system releases, historical source code, software architecture, programming-language texts, and spaceflight computing. Representative starting points include [Bitsavers](https://bitsavers.org/), [the Computer History Museum Software History Center](https://computerhistory.org/software-history-center/), [xv6](https://pdos.csail.mit.edu/6.828/2026/xv6.html), [Multicians](https://www.multicians.org/), [Virtual AGC](https://www.ibiblio.org/apollo/), [SICP](https://mitpress.mit.edu/9780262510875/structure-and-interpretation-of-computer-programs/), [AOSA](https://aosabook.org/en/), and [Software Heritage](https://www.softwareheritage.org/).
+The verified shelf now contains **25 public records** spanning archival collections, early operating-system releases, historical source code, architecture, networking, distributed systems, database systems, programming-language texts, and spaceflight computing. New architecture-first additions include the [Xerox Alto source release](https://computerhistory.org/blog/xerox-alto-source-code/), [RFC 793](https://datatracker.ietf.org/doc/rfc793/), [RFC 1034](https://datatracker.ietf.org/doc/rfc1034/), [Plan 9](https://9p.io/plan9/), [Project Mach](https://www.cs.cmu.edu/afs/cs/project/mach/public/www/mach.html), [GFS](http://research.google.com/archive/gfs-sosp2003.pdf), [MapReduce](https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/), [Bigtable](https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/), [System R](https://research.ibm.com/publications/system-r-relational-approach-to-database-management), and [Dynamo](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf).
 
 ## Editorial standard
 
@@ -26,7 +27,7 @@ Pause prioritizes material that a working programmer, systems engineer, architec
 
 > The editorial test is simple: **will this help a thoughtful person reconstruct the human chain of reasoning behind a computing advance?**
 
-The full data contract, controlled vocabulary, review statuses, and publication policy live in [docs/CATALOG-STANDARD.md](docs/CATALOG-STANDARD.md). Research notes for the first catalog expansion live in [docs/research-batch-01.md](docs/research-batch-01.md).
+The full data contract, controlled vocabulary, review statuses, and publication policy live in [docs/CATALOG-STANDARD.md](docs/CATALOG-STANDARD.md). Research notes for the first and second catalog expansions live in [docs/research-batch-01.md](docs/research-batch-01.md) and [docs/research-batch-02.md](docs/research-batch-02.md).
 
 ## Contributing
 

@@ -1,15 +1,22 @@
 /** Pause design reminder: Field Archive — contemporary archival editorial design. */
 import {
   ArrowDownRight,
+  ArrowLeft,
+  ArrowRight,
   ArrowUpRight,
+  Compass,
   ExternalLink,
   LibraryBig,
+  Pause as PauseIcon,
+  Play,
   Plus,
   ScanSearch,
   ShieldCheck,
 } from "lucide-react";
+import { useMemo, useState } from "react";
 import { Link } from "wouter";
 import { ArchiveFooter, ArchiveHeader } from "@/components/ArchiveChrome";
+import { getNextPauseExplorerRecordIndex } from "@/lib/pauseExplorer";
 import { trpc } from "@/lib/trpc";
 
 const archivalPrinciples = [
@@ -33,12 +40,26 @@ const archivalPrinciples = [
   },
 ];
 
+const pauseExplorerModes = [
+  { id: "all", label: "Entire shelf", note: "A cross-section of the verified record." },
+  { id: "computer_architecture", label: "Architecture", note: "Machine and system blueprints." },
+  { id: "operating_systems", label: "Systems", note: "Operating-system decisions in context." },
+  { id: "networks", label: "Networks", note: "Protocols and shared infrastructure." },
+  { id: "databases", label: "Data", note: "Storage, queries, and consistency choices." },
+] as const;
+
+type PauseExplorerMode = (typeof pauseExplorerModes)[number]["id"];
+
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return <p className="section-eyebrow">{children}</p>;
 }
 
 function formatSourceKind(sourceKind: string) {
   return sourceKind.replaceAll("_", " ");
+}
+
+function formatSourceSubject(sourceSubject: string) {
+  return sourceSubject.replaceAll("_", " ");
 }
 
 function formatYearRange(originalYearStart: number | null, originalYearEnd: number | null) {
@@ -50,8 +71,52 @@ function formatYearRange(originalYearStart: number | null, originalYearEnd: numb
 export default function Home() {
   const { data: publishedSources = [], isLoading: isCatalogLoading } = trpc.catalog.list.useQuery({});
   const { data: catalogStats } = trpc.catalog.stats.useQuery();
-  const featuredSources = publishedSources.slice(0, 6);
+  const [activePauseExplorerMode, setActivePauseExplorerMode] = useState<PauseExplorerMode>("computer_architecture");
+  const [focusedPauseRecordIndex, setFocusedPauseRecordIndex] = useState(0);
+  const [isSingleRecordMode, setIsSingleRecordMode] = useState(false);
+
+  const pauseExplorerSources = useMemo(() => {
+    const subjectMatchedSources = activePauseExplorerMode === "all"
+      ? publishedSources
+      : publishedSources.filter(source => source.primarySubject === activePauseExplorerMode);
+
+    return subjectMatchedSources.length > 0 ? subjectMatchedSources : publishedSources;
+  }, [activePauseExplorerMode, publishedSources]);
+
+  const focusedPauseRecord = pauseExplorerSources.length > 0
+    ? pauseExplorerSources[focusedPauseRecordIndex % pauseExplorerSources.length]
+    : undefined;
+
+  const featuredSources = useMemo(() => {
+    const architectureFirstSources = publishedSources.filter(source =>
+      ["computer_architecture", "operating_systems", "networks", "databases"].includes(source.primarySubject),
+    );
+    const remainingSources = publishedSources.filter(source => !architectureFirstSources.includes(source));
+
+    return [...architectureFirstSources, ...remainingSources].slice(0, 6);
+  }, [publishedSources]);
   const publishedSourceCount = catalogStats?.publishedSourceCount ?? publishedSources.length;
+
+  function choosePauseExplorerMode(explorerMode: PauseExplorerMode) {
+    if (isSingleRecordMode) return;
+
+    setActivePauseExplorerMode(explorerMode);
+    setFocusedPauseRecordIndex(0);
+  }
+
+  function moveFocusedPauseRecord(direction: -1 | 1) {
+    const availableRecordCount = pauseExplorerSources.length;
+    if (availableRecordCount === 0) return;
+
+    setFocusedPauseRecordIndex(currentIndex =>
+      getNextPauseExplorerRecordIndex({
+        currentRecordIndex: currentIndex,
+        availableRecordCount,
+        direction,
+        isSequencePaused: isSingleRecordMode,
+      }),
+    );
+  }
 
   return (
     <div className="pause-site-shell overflow-hidden">
@@ -61,7 +126,7 @@ export default function Home() {
         <section className="hero-section">
           <div className="hero-copy-column">
             <p className="hero-prelude">
-              <strong>PROVENANCE NOTE / 2026</strong> — Built using AI, in support of its responsible and expansive use.
+              <strong>PROVENANCE NOTE / 2026</strong> / Built using AI, in support of its responsible and expansive use.
             </p>
             <div className="hero-title-wrap">
               <span className="hero-title-index">PAUSE / 002</span>
@@ -112,6 +177,106 @@ export default function Home() {
           <Link href="/catalog" aria-label="Browse the Pause catalog">
             <ArrowDownRight size={24} strokeWidth={1.4} />
           </Link>
+        </section>
+
+        <section className="pause-explorer-section" aria-labelledby="pause-explorer-title">
+          <div className="pause-explorer-heading">
+            <div>
+              <SectionEyebrow>THE PAUSE INTERFACE</SectionEyebrow>
+              <h2 id="pause-explorer-title">Slow the shelf down. Inspect one decision trail at a time.</h2>
+            </div>
+            <p>
+              Choose a systems thread, then sequence through the catalog without losing the source, era, or steward behind the idea.
+            </p>
+          </div>
+
+          <div className="pause-explorer-console">
+            <div className="pause-explorer-rail" aria-label="Choose a catalog thread">
+              <div className="pause-explorer-rail-topline">
+                <Compass size={18} strokeWidth={1.5} />
+                <span>SELECT A THREAD</span>
+              </div>
+              <div className="pause-explorer-mode-list">
+                {pauseExplorerModes.map(explorerMode => {
+                  const modeSourceCount = explorerMode.id === "all"
+                    ? publishedSources.length
+                    : publishedSources.filter(source => source.primarySubject === explorerMode.id).length;
+
+                  return (
+                    <button
+                      className={`pause-explorer-mode ${activePauseExplorerMode === explorerMode.id ? "is-active" : ""}`}
+                      type="button"
+                      key={explorerMode.id}
+                      onClick={() => choosePauseExplorerMode(explorerMode.id)}
+                      aria-pressed={activePauseExplorerMode === explorerMode.id}
+                      disabled={isSingleRecordMode}
+                    >
+                      <span>
+                        <strong>{explorerMode.label}</strong>
+                        <small>{explorerMode.note}</small>
+                      </span>
+                      <em>{String(modeSourceCount).padStart(2, "0")}</em>
+                    </button>
+                  );
+                })}
+              </div>
+              <button
+                className={`pause-mode-toggle ${isSingleRecordMode ? "is-active" : ""}`}
+                type="button"
+                onClick={() => setIsSingleRecordMode(currentMode => !currentMode)}
+                aria-pressed={isSingleRecordMode}
+              >
+                {isSingleRecordMode ? <Play size={15} strokeWidth={1.7} /> : <PauseIcon size={15} strokeWidth={1.7} />}
+                {isSingleRecordMode ? "Resume shelf view" : "Pause on this record"}
+              </button>
+            </div>
+
+            <article className={`pause-focus-record ${isSingleRecordMode ? "is-paused" : ""}`} aria-live="polite">
+              {focusedPauseRecord ? (
+                <>
+                  <div className="pause-focus-topline">
+                    <span>FOCUS RECORD / {focusedPauseRecord.accession}</span>
+                    <span>{isSingleRecordMode ? "SEQUENCE PAUSED" : `${String(focusedPauseRecordIndex + 1).padStart(2, "0")} / ${String(pauseExplorerSources.length).padStart(2, "0")}`}</span>
+                  </div>
+                  <div className="pause-focus-body">
+                    <p className="pause-focus-kicker">{formatSourceSubject(focusedPauseRecord.primarySubject)}</p>
+                    <h3>{focusedPauseRecord.title}</h3>
+                    <p>{focusedPauseRecord.whyItMatters}</p>
+                  </div>
+                  <div className="pause-focus-footer">
+                    <dl>
+                      <div>
+                        <dt>Original era</dt>
+                        <dd>{formatYearRange(focusedPauseRecord.originalYearStart, focusedPauseRecord.originalYearEnd)}</dd>
+                      </div>
+                      <div>
+                        <dt>Steward</dt>
+                        <dd>{focusedPauseRecord.steward ?? "Independent record"}</dd>
+                      </div>
+                    </dl>
+                    <a href={focusedPauseRecord.canonicalUrl} target="_blank" rel="noreferrer" className="pause-focus-source-link">
+                      Open source <ExternalLink size={16} strokeWidth={1.7} />
+                    </a>
+                  </div>
+                  <div className="pause-focus-controls" aria-label="Sequence through records">
+                    <button type="button" onClick={() => moveFocusedPauseRecord(-1)} aria-label="Previous source record" disabled={isSingleRecordMode}>
+                      <ArrowLeft size={18} strokeWidth={1.6} />
+                    </button>
+                    <div className="pause-focus-progress" aria-hidden="true">
+                      {pauseExplorerSources.map((source, sourceIndex) => (
+                        <span className={sourceIndex === focusedPauseRecordIndex ? "is-active" : ""} key={source.accession} />
+                      ))}
+                    </div>
+                    <button type="button" onClick={() => moveFocusedPauseRecord(1)} aria-label="Next source record" disabled={isSingleRecordMode}>
+                      <ArrowRight size={18} strokeWidth={1.6} />
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <p className="pause-explorer-loading">Opening a source trail…</p>
+              )}
+            </article>
+          </div>
         </section>
 
         <section className="collection-section" id="collection">

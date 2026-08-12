@@ -1638,3 +1638,416 @@ a[href] {
     margin-left: 0;
   }
 }
+
+/* The Pause explorer makes a chosen source trail the main interaction, not a generic dashboard. */
+.pause-explorer-section {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: clamp(5rem, 9vw, 8.5rem) 3rem;
+}
+
+.pause-explorer-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 0.3fr);
+  gap: clamp(2rem, 8vw, 8rem);
+  align-items: end;
+  padding-left: clamp(0rem, 7vw, 8rem);
+}
+
+.pause-explorer-heading h2 {
+  max-width: 11ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.1vw, 5.6rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.pause-explorer-heading > p {
+  margin: 0 0 0.45rem;
+  color: var(--ink-soft);
+  font-size: 0.69rem;
+  line-height: 1.75;
+}
+
+.pause-explorer-console {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.32fr) minmax(0, 1fr);
+  margin-top: clamp(3.2rem, 7vw, 6.4rem);
+  border: 1px solid var(--ink);
+  background: rgba(251, 249, 244, 0.52);
+}
+
+.pause-explorer-rail {
+  display: flex;
+  flex-direction: column;
+  min-height: 515px;
+  border-right: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.pause-explorer-rail-topline {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.2rem 1.3rem;
+  color: #fdc2ad;
+  border-bottom: 1px solid rgba(245, 242, 234, 0.24);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+}
+
+.pause-explorer-mode-list {
+  display: grid;
+}
+
+.pause-explorer-mode {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.3rem;
+  color: rgba(245, 242, 234, 0.7);
+  border: 0;
+  border-bottom: 1px solid rgba(245, 242, 234, 0.16);
+  background: transparent;
+  font-family: var(--font-mono);
+  text-align: left;
+  transition: background 180ms var(--ease-out), color 180ms var(--ease-out), padding 180ms var(--ease-out);
+}
+
+.pause-explorer-mode:hover,
+.pause-explorer-mode.is-active {
+  padding-left: 1.55rem;
+  color: var(--ink);
+  background: var(--archive-orange);
+}
+
+.pause-explorer-mode:disabled {
+  cursor: not-allowed;
+}
+
+.pause-explorer-rail:has(.pause-mode-toggle.is-active) .pause-explorer-mode:not(.is-active) {
+  color: rgba(245, 242, 234, 0.32);
+}
+
+.pause-explorer-mode span {
+  display: grid;
+  gap: 0.27rem;
+}
+
+.pause-explorer-mode strong {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.pause-explorer-mode small {
+  max-width: 22ch;
+  font-size: 0.56rem;
+  line-height: 1.5;
+}
+
+.pause-explorer-mode em {
+  padding-top: 0.15rem;
+  color: currentColor;
+  font-size: 0.6rem;
+  font-style: normal;
+  letter-spacing: 0.09em;
+}
+
+.pause-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: auto 1.3rem 1.3rem;
+  padding: 0.75rem 0.65rem;
+  color: var(--paper);
+  border: 1px solid rgba(245, 242, 234, 0.34);
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 0.57rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 160ms var(--ease-out), background 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+
+.pause-mode-toggle:hover,
+.pause-mode-toggle.is-active {
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.pause-mode-toggle:active,
+.pause-focus-controls button:active {
+  transform: scale(0.97);
+}
+
+.pause-focus-record {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  min-height: 515px;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.pause-focus-record::before,
+.pause-focus-record::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.pause-focus-record::before {
+  top: 0;
+  right: 11%;
+  width: 1px;
+  height: 100%;
+  background: rgba(19, 36, 51, 0.09);
+}
+
+.pause-focus-record::after {
+  right: 0;
+  bottom: 0;
+  width: 44%;
+  height: 44%;
+  opacity: 0.48;
+  background-image: linear-gradient(rgba(19, 36, 51, 0.11) 1px, transparent 1px), linear-gradient(90deg, rgba(19, 36, 51, 0.11) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.pause-focus-topline,
+.pause-focus-footer,
+.pause-focus-controls,
+.pause-focus-body {
+  position: relative;
+  z-index: 1;
+}
+
+.pause-focus-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  color: var(--archive-orange-deep);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.58rem;
+  letter-spacing: 0.085em;
+}
+
+.pause-focus-topline span:last-child {
+  color: var(--ink-soft);
+}
+
+.pause-focus-body {
+  align-self: center;
+  max-width: 735px;
+  padding: clamp(2.5rem, 6vw, 5.5rem) clamp(1.5rem, 6vw, 6rem);
+}
+
+.pause-focus-kicker {
+  margin: 0;
+  color: var(--archive-orange-deep);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pause-focus-body h3 {
+  max-width: 11ch;
+  margin: 1.15rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 6vw, 6.6rem);
+  font-weight: 500;
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+}
+
+.pause-focus-body > p:last-child {
+  max-width: 58ch;
+  margin: 1.6rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.73rem;
+  line-height: 1.75;
+}
+
+.pause-focus-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: end;
+  padding: 1.2rem 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.pause-focus-footer dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  gap: 1rem 2.5rem;
+  margin: 0;
+}
+
+.pause-focus-footer dt {
+  color: var(--archive-orange-deep);
+  font-size: 0.53rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.pause-focus-footer dd {
+  margin: 0.35rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.61rem;
+  line-height: 1.4;
+}
+
+.pause-focus-source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--archive-orange);
+  font-size: 0.59rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.pause-focus-controls {
+  display: grid;
+  grid-template-columns: 54px 1fr 54px;
+  align-items: center;
+  border-top: 1px solid var(--ink);
+}
+
+.pause-focus-controls button {
+  display: grid;
+  min-height: 52px;
+  place-items: center;
+  color: var(--ink);
+  border: 0;
+  background: transparent;
+  transition: background 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+
+.pause-focus-controls button:hover {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.pause-focus-controls button:disabled {
+  cursor: not-allowed;
+  color: var(--ink-soft);
+  background: transparent;
+}
+
+.pause-focus-progress {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.pause-focus-progress span {
+  width: 18px;
+  height: 1px;
+  background: var(--line);
+  transition: width 180ms var(--ease-out), background 180ms var(--ease-out);
+}
+
+.pause-focus-progress span.is-active {
+  width: 38px;
+  background: var(--archive-orange);
+}
+
+.pause-focus-record.is-paused .pause-focus-body {
+  animation: pause-focus-lock 240ms var(--ease-out) both;
+}
+
+.pause-focus-record.is-paused .pause-focus-progress span:not(.is-active) {
+  opacity: 0.28;
+}
+
+.pause-explorer-loading {
+  align-self: center;
+  justify-self: center;
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+}
+
+@keyframes pause-focus-lock {
+  from {
+    opacity: 0.55;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 980px) {
+  .pause-explorer-section {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .pause-explorer-heading {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+
+  .pause-explorer-console {
+    grid-template-columns: 1fr;
+  }
+
+  .pause-explorer-rail {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .pause-explorer-mode-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pause-mode-toggle {
+    margin-top: 1.1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .pause-explorer-section {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .pause-explorer-mode-list {
+    grid-template-columns: 1fr;
+  }
+
+  .pause-focus-record {
+    min-height: 0;
+  }
+
+  .pause-focus-topline,
+  .pause-focus-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .pause-focus-footer dl {
+    width: 100%;
+  }
+
+  .pause-focus-body {
+    padding: 3.2rem 1.35rem;
+  }
+
+  .pause-focus-body h3 {
+    font-size: clamp(3.1rem, 15vw, 5rem);
+  }
+}
