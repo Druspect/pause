@@ -4,38 +4,52 @@ This GitHub was developed using AI, and I am a strong proponent of using it.
 
 > **Before the answer machine, there was the work.**
 
-Pause is a human-selected index of programming, software, source code, operating systems, and computer-architecture references created before generative AI became a routine layer in technical work. The purpose is not to reject AI. It is to preserve the hard-won context, original thinking, and practical reference material that future builders will still need.
+Pause is a human-selected, source-first index of programming, software, source code, operating systems, and computer-architecture references that preserve the human record before generative AI became a routine layer in technical work. The purpose is not to reject AI. It is to preserve the original thinking, practical constraints, and decision trails that future builders will still need.
 
-The project is deliberately an **index**, not another file warehouse. Each entry should explain what a source contains, why it matters, its original era, and where it can be accessed or preserved.
+Pause is deliberately an **index**, not another file warehouse. It points outward to the institutions, projects, publishers, and communities that steward the original material.
 
-## Initial collection
+## What is live now
 
-| Source | Why it belongs here | Focus |
+The project includes a public, searchable catalog at `/catalog` and an authenticated source-proposal flow at `/contribute`. Public entries are delivered from the database and contain a stable accession, canonical URL, original era where known, steward, description, concrete technical value, and access or rights notes.
+
+| Layer | Purpose | Publication rule |
 |---|---|---|
-| [Retrocomputing Archive](http://www.retroarchive.org/) | A classic-software and documentation archive spanning CP/M, MS-DOS, 8080, 6502, VAX, BBS software, programming tools, and hardware-specific collections. | Programs, tools, documentation |
-| [Bitsavers](https://bitsavers.org/) | A vast preservation effort for computing manuals, software, components, communications, magazines, and test-equipment documentation. | Manuals, architecture, systems |
-| [Internet Archive Software Collection](https://archive.org/details/software) | A broad library of historical programs, disk images, CD-ROMs, documentation, and emulated software. | Software preservation |
-| [The Architecture of Open Source Applications](https://aosabook.org/en/) | First-person technical studies of systems such as Bash, LLVM, Git, FreeRTOS, GDB, nginx, PyPy, SQLAlchemy, Twisted, and ZeroMQ. | Software architecture |
-| [Computer History Museum Software History Center](https://computerhistory.org/software-history-center/) | Historical source-code releases, oral histories, software demonstrations, and interpretive context. | Source code, oral history |
-| [Programming Textfiles](http://www.textfiles.com/programming/) | Primary-source programming notes and text files, including early approaches to security, cryptography, and artificial intelligence. | Programming history |
-| [SIGCIS History Resources Guide](https://www.sigcis.org/resources) | A historian-created guide to archives, museums, journals, oral histories, bibliographies, and document collections. | Research map |
-| [Awesome Computer History](https://github.com/watson/awesome-computer-history) | A lightweight curated link list covering historical videos, texts, source code, and websites. | Media, computer history |
-| [Software Heritage](https://www.softwareheritage.org/) | A long-term universal source-code archive with archive browsing and legacy-code preservation workflows. | Source-code preservation |
+| **Public catalog** | Browse verified sources by subject, type, and free-text query. | Only `verified` and `archived` records are visible. |
+| **Source proposals** | Let authenticated contributors propose missing material. | Submissions remain private to the contributor and editors during review. |
+| **Editorial standard** | Keep the catalog explainable and source-first. | Every visible entry needs a canonical source and enough context to make its technical value clear. |
 
-## What belongs in Pause
+The initial verified shelf covers archival collections, early operating-system releases, historical source code, software architecture, programming-language texts, and spaceflight computing. Representative starting points include [Bitsavers](https://bitsavers.org/), [the Computer History Museum Software History Center](https://computerhistory.org/software-history-center/), [xv6](https://pdos.csail.mit.edu/6.828/2026/xv6.html), [Multicians](https://www.multicians.org/), [Virtual AGC](https://www.ibiblio.org/apollo/), [SICP](https://mitpress.mit.edu/9780262510875/structure-and-interpretation-of-computer-programs/), [AOSA](https://aosabook.org/en/), and [Software Heritage](https://www.softwareheritage.org/).
+
+## Editorial standard
 
 Pause prioritizes material that a working programmer, systems engineer, architect, student, or historian can use to understand how computing ideas were actually built. Good contributions include original manuals, influential papers, source-code releases, architecture explanations, historic language documentation, systems documentation, recordings with technical context, and durable archival collections.
 
-The editorial test is simple: **will this help a thoughtful person reconstruct the human chain of reasoning behind a computing advance?** If yes, it belongs here.
+> The editorial test is simple: **will this help a thoughtful person reconstruct the human chain of reasoning behind a computing advance?**
+
+The full data contract, controlled vocabulary, review statuses, and publication policy live in [docs/CATALOG-STANDARD.md](docs/CATALOG-STANDARD.md). Research notes for the first catalog expansion live in [docs/research-batch-01.md](docs/research-batch-01.md).
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md). The smallest useful submission is a single link with a concise explanation of its original era, subject, and lasting value.
+Open the live `/contribute` page, sign in, and provide the canonical source, original era, subject, source type, technical summary, lasting value, and any access or rights caveat. Every proposal enters a private editorial queue. Existing-source standards and GitHub contribution guidance are in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Development
+
+Pause is a React, TypeScript, Express, tRPC, Drizzle, and MySQL/TiDB project. The application uses the provided OAuth flow for authenticated proposals and a database-backed catalog for public source discovery.
+
+```bash
+pnpm install
+pnpm dev
+pnpm check
+pnpm test
+pnpm build
+```
+
+Database changes follow the schema-first workflow: update `drizzle/schema.ts`, generate and review the migration, apply it through the project database workflow, then verify the public catalog and contributor flow.
 
 ## Launch copy
 
-An X-ready launch post is maintained in [docs/X-POST.md](docs/X-POST.md). It is intentionally short enough to post with the repository link.
+An X-ready launch post is maintained in [docs/X-POST.md](docs/X-POST.md). It is intentionally short enough to post with the repository link and a catalog screenshot.
 
 ## License
 
-The site and original editorial material are released under the [MIT License](LICENSE). Each external source remains subject to its own rights, licenses, access requirements, and archival policies.
+The site and original editorial material are released under the [MIT License](LICENSE). Every external source remains subject to its own rights, licenses, access requirements, and archival policies.

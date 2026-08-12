@@ -19,3 +19,16 @@ Pause is a human-selected index of old source code, manuals, software architectu
 ## Suggested media
 
 Attach a screenshot of the landing page hero. The post should lead with the repository URL after the repository owner is known, rather than a temporary site URL.
+
+---
+
+## Catalog expansion post
+
+Pause now has a public, searchable source ledger and a contributor review flow.
+
+I built it with AI because I believe in using these tools. I also believe the manuals, source code, architecture notes, and original reasoning from before this moment need to stay easy to find.
+
+Browse: https://pauseindex-nbws4uek.manus.space
+Source: https://github.com/Druspect/pause
+
+Contributions welcome. Send the original material and explain what a future builder can learn from it. #computinghistory #programming #softwarearchitecture
