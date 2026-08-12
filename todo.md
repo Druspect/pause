@@ -16,5 +16,5 @@
 - [x] Add unit coverage for paused and wrapping record-sequencing behavior.
 - [x] Visually verify the expanded catalog at desktop and mobile widths.
 - [x] Save the final checkpoint and synchronize the completed release state to GitHub.
-- [ ] Push the post-validation checklist state to GitHub and verify the remote main branch matches local HEAD.
-- [ ] Save the final post-validation checkpoint for the architecture expansion.
+- [x] Push the post-validation checklist state to GitHub and verify the remote main branch matches local HEAD.
+- [x] Save the final post-validation checkpoint for the architecture expansion.
