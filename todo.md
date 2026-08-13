@@ -18,3 +18,9 @@
 - [x] Save the final checkpoint and synchronize the completed release state to GitHub.
 - [x] Push the post-validation checklist state to GitHub and verify the remote main branch matches local HEAD.
 - [x] Save the final post-validation checkpoint for the architecture expansion.
+- [x] Define the next deep-research batch across language, networking, database, hardware, and software-preservation archives.
+- [x] Discover and independently verify the strongest additional archive sources and primary records.
+- [x] Verify the third research batch inline, source by source, without wide or parallel collection.
+- [x] Add the approved records and a curated-collection overview to the database, site, and GitHub documentation.
+- [x] Add unit coverage for curated-collection totals and source grouping.
+- [ ] Validate the expanded catalog, synchronize GitHub, publish the release, and report the curated overview.

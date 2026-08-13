@@ -32,3 +32,16 @@ Browse: https://pauseindex-nbws4uek.manus.space
 Source: https://github.com/Druspect/pause
 
 Contributions welcome. Send the original material and explain what a future builder can learn from it. #computinghistory #programming #softwarearchitecture
+
+---
+
+## Deep archive expansion post
+
+Pause now maps **36 verified sources** across operating systems, architecture, network protocols, databases, languages, hardware, and preservation archives.
+
+The latest additions include IPv4, UDP, SMTP, FTP, HTTP/1.1, Codd’s relational model, Dennis Ritchie’s history of C, Chord, the GNU archive, Intel 4004 history, and Berkeley’s CSRG archive.
+
+Each source was checked inline, one at a time, and linked back to a primary publisher or documented steward.
+
+Explore the collection overview: https://pauseindex-nbws4uek.manus.space/overview
+Source: https://github.com/Druspect/pause

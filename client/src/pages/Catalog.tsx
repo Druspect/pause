@@ -8,6 +8,8 @@ const subjectFilters = [
   { value: "all", label: "All subjects" },
   { value: "operating_systems", label: "Operating systems" },
   { value: "computer_architecture", label: "Architecture" },
+  { value: "networks", label: "Networks" },
+  { value: "databases", label: "Databases" },
   { value: "programming_languages", label: "Languages" },
   { value: "source_code", label: "Source code" },
   { value: "manuals", label: "Manuals" },
@@ -26,6 +28,15 @@ const sourceKindFilters = [
 type SubjectFilterValue = (typeof subjectFilters)[number]["value"];
 type SourceKindFilterValue = (typeof sourceKindFilters)[number]["value"];
 
+function getInitialSubjectFilter(): SubjectFilterValue {
+  if (typeof window === "undefined") return "all";
+
+  const requestedSubject = new URLSearchParams(window.location.search).get("subject");
+  const matchingSubject = subjectFilters.find(filter => filter.value === requestedSubject);
+
+  return matchingSubject?.value ?? "all";
+}
+
 function formatEnumLabel(value: string) {
   return value.replaceAll("_", " ");
 }
@@ -37,7 +48,7 @@ function formatYearRange(originalYearStart: number | null, originalYearEnd: numb
 }
 
 export default function Catalog() {
-  const [selectedSubject, setSelectedSubject] = useState<SubjectFilterValue>("all");
+  const [selectedSubject, setSelectedSubject] = useState<SubjectFilterValue>(getInitialSubjectFilter);
   const [selectedSourceKind, setSelectedSourceKind] = useState<SourceKindFilterValue>("all");
   const [searchTerm, setSearchTerm] = useState("");
 

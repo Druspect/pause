@@ -2051,3 +2051,394 @@ a[href] {
     font-size: clamp(3.1rem, 15vw, 5rem);
   }
 }
+
+/* The curated overview reads like an annotated finding aid instead of a dashboard. */
+.overview-page-main {
+  padding-bottom: clamp(5rem, 8vw, 8rem);
+}
+
+.overview-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.42fr);
+  gap: clamp(2rem, 8vw, 9rem);
+  align-items: end;
+  padding-left: clamp(0rem, 7vw, 8rem);
+}
+
+.overview-intro h1 {
+  max-width: 9ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 500;
+  line-height: 0.84;
+  letter-spacing: -0.07em;
+}
+
+.overview-intro-note {
+  padding-bottom: 0.55rem;
+}
+
+.overview-intro-note p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.73rem;
+  line-height: 1.8;
+}
+
+.overview-intro-note .inline-link {
+  margin-top: 1.35rem;
+}
+
+.overview-brief {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(4rem, 8vw, 7rem);
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--line);
+}
+
+.overview-brief article {
+  min-height: 260px;
+  padding: 1.15rem 1.25rem 1.4rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--ink);
+  background: rgba(251, 249, 244, 0.48);
+}
+
+.overview-brief span {
+  color: var(--archive-orange-deep);
+  font-size: 0.55rem;
+  letter-spacing: 0.09em;
+}
+
+.overview-brief strong {
+  display: block;
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 7vw, 6.5rem);
+  font-weight: 500;
+  line-height: 0.8;
+  letter-spacing: -0.075em;
+}
+
+.overview-brief p {
+  max-width: 29ch;
+  margin: 2rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.66rem;
+  line-height: 1.65;
+}
+
+.overview-section,
+.overview-lower-grid,
+.overview-recent-section {
+  margin-top: clamp(5rem, 9vw, 8rem);
+}
+
+.overview-section-heading,
+.overview-recent-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 0.3fr);
+  gap: clamp(2rem, 8vw, 8rem);
+  align-items: end;
+  padding-left: clamp(0rem, 7vw, 8rem);
+}
+
+.overview-section-heading h2,
+.overview-recent-heading h2,
+.overview-method-card h2 {
+  max-width: 11ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.1vw, 5.6rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.overview-section-heading > p {
+  margin: 0 0 0.45rem;
+  color: var(--ink-soft);
+  font-size: 0.69rem;
+  line-height: 1.75;
+}
+
+.overview-subject-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(3rem, 6vw, 5.5rem);
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--line);
+}
+
+.overview-subject-card {
+  min-height: 250px;
+  padding: 1rem 1.15rem 1.2rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--ink);
+  background: rgba(251, 249, 244, 0.35);
+  transition: background 180ms var(--ease-out), transform 180ms var(--ease-out);
+}
+
+.overview-subject-card:hover {
+  background: rgba(230, 92, 46, 0.08);
+  transform: translateY(-2px);
+}
+
+.overview-card-topline {
+  display: flex;
+  justify-content: space-between;
+  color: var(--archive-orange-deep);
+  font-size: 0.61rem;
+}
+
+.overview-subject-card h3 {
+  max-width: 10ch;
+  margin: 3rem 0 0;
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: capitalize;
+}
+
+.overview-measure {
+  height: 3px;
+  margin-top: 1.35rem;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.overview-measure span {
+  display: block;
+  height: 100%;
+  min-width: 8px;
+  background: var(--archive-orange);
+}
+
+.overview-subject-card p {
+  margin: 0.8rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.6rem;
+  line-height: 1.55;
+}
+
+.overview-timeline-section {
+  padding: clamp(3.2rem, 6vw, 6rem) clamp(1.25rem, 5vw, 5rem);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.overview-timeline-section .section-eyebrow {
+  color: #fdc2ad;
+}
+
+.overview-timeline-section .overview-section-heading > p {
+  color: rgba(245, 242, 234, 0.68);
+}
+
+.overview-timeline {
+  display: grid;
+  gap: 1.35rem;
+  margin-top: clamp(3rem, 6vw, 5.5rem);
+}
+
+.overview-timeline-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.25fr) 1fr 40px;
+  gap: 1rem;
+  align-items: center;
+}
+
+.overview-timeline-row > span,
+.overview-timeline-row strong {
+  font-size: 0.61rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.overview-timeline-row strong {
+  color: #fdc2ad;
+  text-align: right;
+}
+
+.overview-timeline-rule {
+  height: 5px;
+  background: rgba(245, 242, 234, 0.18);
+}
+
+.overview-timeline-rule i {
+  display: block;
+  min-width: 3px;
+  height: 100%;
+  background: var(--archive-orange);
+}
+
+.overview-lower-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(280px, 0.45fr);
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.overview-method-card {
+  padding: clamp(1.4rem, 4vw, 3.5rem);
+  border-top: 1px solid var(--ink);
+  background: var(--paper-deep);
+}
+
+.overview-method-card > svg {
+  color: var(--archive-orange-deep);
+}
+
+.overview-method-card .section-eyebrow {
+  margin-top: 2rem;
+}
+
+.overview-method-card h2 {
+  max-width: 9ch;
+  font-size: clamp(3rem, 5vw, 5rem);
+}
+
+.overview-method-card > p:not(.section-eyebrow) {
+  max-width: 60ch;
+  margin: 1.4rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  line-height: 1.8;
+}
+
+.overview-method-card .inline-link {
+  margin-top: 1.8rem;
+}
+
+.overview-kind-card {
+  padding: 1.2rem 0 0;
+  border-top: 1px solid var(--ink);
+}
+
+.overview-kind-list {
+  margin-top: 2rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.overview-kind-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.92rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.65rem;
+  text-transform: capitalize;
+}
+
+.overview-kind-list strong {
+  color: var(--archive-orange-deep);
+  font-size: 0.63rem;
+}
+
+.overview-recent-heading {
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding-left: 0;
+}
+
+.overview-recent-heading h2 {
+  max-width: 10ch;
+}
+
+.overview-recent-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 3rem;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--line);
+}
+
+.overview-recent-record {
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  padding: 1rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--ink);
+  background: rgba(251, 249, 244, 0.35);
+  transition: color 180ms var(--ease-out), background 180ms var(--ease-out);
+}
+
+.overview-recent-record:hover {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.overview-recent-record > span {
+  color: var(--archive-orange-deep);
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+}
+
+.overview-recent-record h3 {
+  margin: auto 0 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+.overview-recent-record p {
+  margin: 0.85rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.56rem;
+  line-height: 1.45;
+  text-transform: capitalize;
+}
+
+.overview-recent-record:hover p {
+  color: #fdc2ad;
+}
+
+@media (max-width: 980px) {
+  .overview-intro,
+  .overview-section-heading {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+
+  .overview-brief,
+  .overview-subject-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .overview-lower-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-recent-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .overview-brief,
+  .overview-subject-grid,
+  .overview-recent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-timeline-row {
+    grid-template-columns: 100px 1fr 28px;
+    gap: 0.65rem;
+  }
+
+  .overview-timeline-row > span,
+  .overview-timeline-row strong {
+    font-size: 0.52rem;
+  }
+
+  .overview-recent-heading {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}

@@ -19,6 +19,7 @@ export function ArchiveHeader({ findingAid }: { findingAid: string }) {
       <div className="header-right-frame">
         <nav className="header-nav" aria-label="Primary navigation">
           <Link href="/catalog">Catalog</Link>
+          <Link href="/overview">Overview</Link>
           <Link href="/contribute">Contribute</Link>
         </nav>
         <a className="header-github-link" href="https://github.com/Druspect/pause" target="_blank" rel="noreferrer">
