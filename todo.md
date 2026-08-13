@@ -23,4 +23,5 @@
 - [x] Verify the third research batch inline, source by source, without wide or parallel collection.
 - [x] Add the approved records and a curated-collection overview to the database, site, and GitHub documentation.
 - [x] Add unit coverage for curated-collection totals and source grouping.
-- [ ] Validate the expanded catalog, synchronize GitHub, publish the release, and report the curated overview.
+- [x] Validate the expanded catalog, synchronize GitHub, publish the release, and report the curated overview.
+- [x] Save the final deep-archive checkpoint and report the curated collection overview to the user.
